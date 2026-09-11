@@ -16,8 +16,6 @@ export default function CulturalFitPage() {
     <div className="space-y-6">
       <CategorySearch
         questions={questions}
-        title="Fit Cultural & Trabajo en Equipo"
-        subtitle="Resolución de desacuerdos, alineación con la cultura del equipo, gestión de prioridades y feedback constructivo."
         badge="Cultura & Colaboración"
         categoryIcon={faHeart}
       />

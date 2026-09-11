@@ -16,8 +16,6 @@ export default function HrPage() {
     <div className="space-y-6">
       <CategorySearch
         questions={questions}
-        title="Entrevista RRHH & Comportamiento"
-        subtitle="Estrategias de comunicación, trayectoria profesional y metodología STAR para destacar ante recursos humanos."
         badge="Recursos Humanos"
         categoryIcon={faUsers}
       />

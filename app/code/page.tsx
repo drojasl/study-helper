@@ -16,8 +16,6 @@ export default function CodePage() {
     <div className="space-y-6">
       <CategorySearch
         questions={questions}
-        title="Desafíos de Código y Lógica (PHP)"
-        subtitle="Ejercicios prácticos, algoritmos, patrones de diseño y buenas prácticas orientadas a desarrollo en PHP."
         badge="Live Coding & Lógica"
         categoryIcon={faLaptopCode}
       />
