@@ -79,7 +79,11 @@ export function CategorySearch({
           )}
         </div>
       </CategoryHeader>
-      <QuestionList questions={filteredQuestions} emptyMessage={emptyMessage} />
+      <QuestionList
+        questions={filteredQuestions}
+        emptyMessage={emptyMessage}
+        showTags={isTagFilterExpanded}
+      />
     </section>
   );
 }

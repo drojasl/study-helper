@@ -8,11 +8,13 @@ import { Question } from "@/types/question";
 interface QuestionAccordionProps {
   question: Question;
   defaultOpen?: boolean;
+  showTags?: boolean;
 }
 
 export function QuestionAccordion({
   question,
   defaultOpen = false,
+  showTags = true,
 }: QuestionAccordionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
@@ -31,7 +33,7 @@ export function QuestionAccordion({
           <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-snug">
             {question.question}
           </p>
-          {question.tags.length > 0 && (
+          {showTags && question.tags.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mt-2">
               {question.tags.map((tag) => (
                 <span

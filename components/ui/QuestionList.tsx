@@ -7,12 +7,14 @@ interface QuestionListProps {
   questions: Question[];
   emptyMessage?: string;
   className?: string;
+  showTags?: boolean;
 }
 
 export function QuestionList({
   questions,
   emptyMessage = "No hay preguntas disponibles en esta categoría por el momento.",
   className,
+  showTags = true,
 }: QuestionListProps) {
   if (questions.length === 0) {
     return (
@@ -28,7 +30,11 @@ export function QuestionList({
   return (
     <div className={`space-y-3 ${className ?? ""}`}>
       {questions.map((item) => (
-        <QuestionAccordion key={item.id} question={item} />
+        <QuestionAccordion
+          key={item.id}
+          question={item}
+          showTags={showTags}
+        />
       ))}
     </div>
   );
