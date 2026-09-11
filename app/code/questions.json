@@ -1,0 +1,58 @@
+[
+  {
+    "id": "code-1",
+    "question": "¿Cómo invertirías un string en PHP sin utilizar la función nativa strrev()?",
+    "answer": "El enfoque manual consiste en iterar el string desde el último carácter hasta el primero, acumulando cada carácter en una nueva cadena. La complejidad temporal es O(n) donde n es la longitud del string.\n\nEl algoritmo utiliza strlen() para obtener la longitud, luego un bucle for decreciente que accede a cada carácter por índice usando la notación de corchetes. Este método demuestra comprensión de índices y manipulación de strings sin depender de funciones de alto nivel.",
+    "category": "code",
+    "tags": ["PHP", "Strings", "Algoritmos", "O(n)"],
+    "codeLanguage": "php",
+    "codeSnippet": "<?php\n\nfunction reverseString(string $str): string {\n    $reversed = '';\n    $length = strlen($str);\n\n    for ($i = $length - 1; $i >= 0; $i--) {\n        $reversed .= $str[$i];\n    }\n\n    return $reversed;\n}\n\n// Uso:\n$original = 'Hello, World!';\n$result = reverseString($original);\n\necho $result; // !dlroW ,olleH",
+    "keyPoints": [
+      "Complejidad O(n) en tiempo y O(n) en espacio (nueva cadena)",
+      "Alternativa con array: str_split() + array_reverse() + implode()",
+      "En PHP moderno, strrev() es la función nativa optimizada a nivel C"
+    ]
+  },
+  {
+    "id": "code-2",
+    "question": "Implementación del patrón de diseño Singleton en PHP.",
+    "answer": "El patrón Singleton garantiza que una clase tenga una única instancia en toda la aplicación y proporciona un punto de acceso global a ella.\n\nLos elementos clave son:\n• Constructor privado: evita instanciación con new desde el exterior.\n• Método __clone() privado: evita la clonación del objeto.\n• Propiedad estática $instance: almacena la única instancia.\n• Método estático getInstance(): verifica si existe la instancia; si no, la crea y la retorna.\n\nUso práctico: conexiones a base de datos, gestores de configuración, loggers. Se debe usar con cuidado ya que puede dificultar el testing (difícil mockear).",
+    "category": "code",
+    "tags": ["PHP", "Patrones de diseño", "Singleton", "OOP"],
+    "codeLanguage": "php",
+    "codeSnippet": "<?php\n\nclass DatabaseConnection {\n    private static ?DatabaseConnection $instance = null;\n    private \\PDO $pdo;\n\n    private function __construct() {\n        $this->pdo = new \\PDO(\n            'mysql:host=localhost;dbname=myapp',\n            'user',\n            'password'\n        );\n    }\n\n    // Evitar clonación\n    private function __clone() {}\n\n    public static function getInstance(): static {\n        if (static::$instance === null) {\n            static::$instance = new static();\n        }\n        return static::$instance;\n    }\n\n    public function getConnection(): \\PDO {\n        return $this->pdo;\n    }\n}\n\n// Uso:\n$conn1 = DatabaseConnection::getInstance();\n$conn2 = DatabaseConnection::getInstance();\n\nvar_dump($conn1 === $conn2); // bool(true) — misma instancia",
+    "keyPoints": [
+      "Constructor y __clone DEBEN ser privados para garantizar la unicidad",
+      "Usar static:: en vez de self:: permite que clases hijas tengan su propio Singleton (Late Static Binding)",
+      "Alternativa moderna: Inyección de Dependencias (DI) es preferible en sistemas testeables"
+    ]
+  },
+  {
+    "id": "code-3",
+    "question": "Manejo funcional de arrays en PHP: comparación entre array_map, array_filter y array_reduce.",
+    "answer": "PHP ofrece tres funciones de orden superior para manipulación funcional de arrays, evitando mutación de estado y bucles imperativos:\n\n▸ array_map(): Transforma cada elemento del array aplicando un callback. Retorna un nuevo array con la misma cantidad de elementos.\n\n▸ array_filter(): Filtra elementos del array según un predicado (callback que retorna bool). Retorna un nuevo array con los elementos que pasaron el filtro.\n\n▸ array_reduce(): Reduce todo el array a un único valor acumulado (suma, concatenación, objeto, etc.) mediante un callback y un valor inicial.\n\nVentajas del enfoque funcional: inmutabilidad (no modifica el array original), composición de operaciones, código más declarativo y legible.",
+    "category": "code",
+    "tags": ["PHP", "Arrays", "Programación funcional", "array_map", "array_filter"],
+    "codeLanguage": "php",
+    "codeSnippet": "<?php\n\n$numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\n\n// array_map: duplicar cada número\n$doubled = array_map(fn($n) => $n * 2, $numbers);\n// [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\n\n// array_filter: conservar solo los pares\n$evens = array_filter($numbers, fn($n) => $n % 2 === 0);\n// [2, 4, 6, 8, 10]\n\n// array_reduce: suma total\n$sum = array_reduce($numbers, fn($carry, $n) => $carry + $n, 0);\n// 55\n\n// Composición: suma de cuadrados de los pares\n$result = array_reduce(\n    array_map(\n        fn($n) => $n ** 2,\n        array_filter($numbers, fn($n) => $n % 2 === 0)\n    ),\n    fn($carry, $n) => $carry + $n,\n    0\n);\n\necho $result; // 220  (4+16+36+64+100)",
+    "keyPoints": [
+      "array_filter preserva los keys originales; usar array_values() si necesitas re-indexar",
+      "Las arrow functions (fn() =>) capturan el scope externo automáticamente (PHP 7.4+)",
+      "Composición de las tres funciones es muy poderosa para transformaciones de datos complejas"
+    ]
+  },
+  {
+    "id": "code-4",
+    "question": "Prevención de Inyecciones SQL en PHP mediante PDO y Consultas Preparadas.",
+    "answer": "La inyección SQL ocurre cuando datos del usuario se concatenan directamente en queries SQL, permitiendo al atacante manipular la consulta.\n\nLa solución es usar PDO (PHP Data Objects) con consultas preparadas (prepared statements):\n\n▸ prepare(): Envía el template de la query al motor de BD con placeholders (? o :nombre).\n▸ bindParam() / bindValue(): Vincula variables PHP a los placeholders con tipado explícito.\n▸ execute(): Ejecuta la query ya con los valores seguros.\n\nEl motor de BD trata los parámetros SIEMPRE como datos, nunca como SQL, eliminando completamente el vector de ataque de SQL Injection.",
+    "category": "code",
+    "tags": ["PHP", "PDO", "Seguridad", "SQL Injection", "Consultas preparadas"],
+    "codeLanguage": "php",
+    "codeSnippet": "<?php\n\n// VULNERABLE — NUNCA hacer esto:\n// $query = \"SELECT * FROM users WHERE email = '\" . $_POST['email'] . \"'\";\n\n// CORRECTO — PDO con consultas preparadas:\nfunction getUserByEmail(PDO $pdo, string $email): array|false {\n    $stmt = $pdo->prepare(\n        'SELECT id, name, email FROM users WHERE email = :email AND active = :active'\n    );\n\n    $stmt->bindParam(':email', $email, PDO::PARAM_STR);\n\n    $active = 1;\n    $stmt->bindParam(':active', $active, PDO::PARAM_INT);\n\n    $stmt->execute();\n\n    return $stmt->fetch(PDO::FETCH_ASSOC);\n}\n\n// Configuración segura de PDO:\n$pdo = new PDO(\n    'mysql:host=localhost;dbname=myapp;charset=utf8mb4',\n    'db_user',\n    'db_pass',\n    [\n        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,\n        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,\n        PDO::ATTR_EMULATE_PREPARES   => false, // Prepared statements REALES\n    ]\n);\n\n$user = getUserByEmail($pdo, $_POST['email'] ?? '');\nvar_dump($user);",
+    "keyPoints": [
+      "PDO::ATTR_EMULATE_PREPARES => false es crítico: usa prepared statements reales del motor de BD",
+      "bindParam() vincula por referencia; bindValue() vincula por valor — usa bindValue() en loops",
+      "Sanitizar inputs no es suficiente: las consultas preparadas son la única defensa robusta"
+    ]
+  }
+]

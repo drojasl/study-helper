@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hr-1",
+    "question": "Cuéntame sobre ti y tu trayectoria profesional.",
+    "answer": "Soy desarrollador de software con enfoque en desarrollo web full-stack. Mi trayectoria comenzó con tecnologías backend como PHP y Laravel, y fui expandiéndome hacia el frontend con React y Next.js.\n\n▸ Presente: Actualmente trabajo en proyectos web complejos que combinan arquitecturas REST, bases de datos relacionales y UI modernas con TypeScript.\n▸ Pasado: He contribuido en equipos ágiles, participando en definición de requerimientos, code reviews y despliegues en producción con pipelines CI/CD.\n▸ Futuro: Busco seguir creciendo en arquitectura de software escalable, contribuyendo a productos que generen impacto real en los usuarios.\n\nMi propuesta de valor está en la combinación de solidez técnica backend con sensibilidad de producto para el frontend.",
+    "category": "hr",
+    "tags": ["Presentación", "Trayectoria", "Propuesta de valor"],
+    "keyPoints": [
+      "Estructura: Presente → Pasado → Futuro",
+      "Vincular la historia personal con el valor que aportas al equipo",
+      "Mantener respuesta entre 90 y 120 segundos"
+    ]
+  },
+  {
+    "id": "hr-2",
+    "question": "Describe una situación de alta presión o conflicto en un proyecto anterior (Metodología STAR).",
+    "answer": "▸ Situación: En un proyecto de migración de base de datos en producción, detectamos un error crítico horas antes del lanzamiento que afectaba la integridad de los datos de clientes.\n\n▸ Tarea: Como tech lead de turno, era mi responsabilidad coordinar la resolución sin retrasar el deployment más de lo necesario y comunicar el estado al cliente.\n\n▸ Acción: Convoqué una sesión de troubleshooting inmediata con el equipo. Implementé un script de validación para identificar los registros afectados, aplicamos un rollback parcial y documentamos el fix en tiempo real. Mantuve comunicación transparente con el cliente sobre tiempos estimados.\n\n▸ Resultado: Lanzamos con 4 horas de retraso, cero pérdida de datos y el cliente valoró positivamente la comunicación proactiva. Documentamos el proceso como protocolo de incidentes para el equipo.",
+    "category": "hr",
+    "tags": ["STAR", "Resolución de conflictos", "Liderazgo", "Presión"],
+    "keyPoints": [
+      "Usar siempre la estructura: Situación → Tarea → Acción → Resultado",
+      "El resultado debe ser medible (tiempo, impacto, aprendizaje)",
+      "Mostrar reflexión sobre lo aprendido"
+    ]
+  },
+  {
+    "id": "hr-3",
+    "question": "¿Cuáles consideras que son tus mayores fortalezas y áreas de oportunidad?",
+    "answer": "▸ Fortalezas:\n• Capacidad de descomponer problemas técnicos complejos en soluciones pragmáticas y entregables.\n• Comunicación técnica clara hacia perfiles no técnicos (stakeholders, diseñadores, PM).\n• Aprendizaje autónomo acelerado: cuando enfrento una tecnología nueva, logro ser productivo rápidamente con una metodología de estudio estructurada.\n\n▸ Áreas de oportunidad:\n• Delegar tareas cuando asumo que es más rápido hacerlo yo mismo. Estoy trabajando en esto conscientizando el beneficio del crecimiento del equipo.\n• Perfeccionismo en código propio: a veces invierto tiempo extra en detalles de implementación internos. Estoy aplicando la práctica de timeboxing para entregas iterativas.\n\nSoy consciente de ambas áreas y tengo acciones concretas para seguir mejorando.",
+    "category": "hr",
+    "tags": ["Autoconocimiento", "Fortalezas", "Áreas de mejora"],
+    "keyPoints": [
+      "Ser honesto pero estratégico: elige áreas de oportunidad reales que no sean debilidades críticas para el rol",
+      "Siempre acompañar las áreas de oportunidad con acciones concretas de mejora",
+      "Evitar respuestas genéricas como 'soy perfeccionista' sin contexto"
+    ]
+  },
+  {
+    "id": "hr-4",
+    "question": "¿Por qué te interesa formar parte de nuestro equipo y proyecto?",
+    "answer": "Me atrae este rol por tres razones principales:\n\n1. Impacto técnico real: El tipo de producto que construyen tiene un alcance y escala que representa un desafío técnico genuino, no solo mantenimiento de software.\n\n2. Retos de arquitectura y stack: El stack tecnológico está alineado con las áreas en que quiero seguir profundizando: sistemas distribuidos, APIs de alto rendimiento y frontend moderno.\n\n3. Crecimiento profesional: Valoro equipos donde el code review es cultura y donde el aprendizaje continuo es parte del día a día, no una excepción.\n\nNo busco simplemente un nuevo trabajo; busco un entorno donde mis habilidades generen valor mientras sigo creciendo como ingeniero.",
+    "category": "hr",
+    "tags": ["Motivación", "Fit cultural", "Objetivos profesionales"],
+    "keyPoints": [
+      "Investigar previamente la empresa: producto, tecnología, cultura",
+      "Conectar motivaciones personales con el proyecto específico",
+      "Demostrar que es una decisión reflexiva, no oportunista"
+    ]
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "cult-1",
+    "question": "¿Cómo manejas un desacuerdo técnico o de arquitectura con un compañero de equipo?",
+    "answer": "Mi enfoque ante desacuerdos técnicos sigue un proceso estructurado:\n\n1. Escuchar activamente: Antes de defender mi postura, me aseguro de entender completamente el razonamiento del otro. A veces la solución del compañero tiene contexto o restricciones que yo desconozco.\n\n2. Argumentar con datos, no con opiniones: Busco benchmarks, documentación oficial, casos de uso reales o pruebas de concepto (PoC) rápidas para respaldar posiciones técnicas.\n\n3. Buscar el consenso orientado al negocio: La mejor solución técnica no siempre es la más compleja. Evalúo el impacto, el tiempo de implementación y el riesgo junto al compañero.\n\n4. Escalar cuando es necesario: Si no llegamos a un consenso tras la discusión técnica, lo escalamos al tech lead o arquitecto con las opciones documentadas para que tome la decisión final.\n\nEl objetivo siempre es llegar a la mejor solución para el producto, no 'ganar' el debate.",
+    "category": "cultural-fit",
+    "tags": ["Trabajo en equipo", "Comunicación", "Resolución de conflictos", "Liderazgo"],
+    "keyPoints": [
+      "Separar la idea de la persona: el debate es sobre la solución, no sobre el ego",
+      "Un PoC rápido suele resolver más desacuerdos técnicos que horas de debate verbal",
+      "Documentar la decisión tomada y el razonamiento, independientemente de quién 'ganó'"
+    ]
+  },
+  {
+    "id": "cult-2",
+    "question": "¿Qué actitud adoptas cuando una decisión de arquitectura o producto no coincide con tu opinión?",
+    "answer": "Aplico el principio de 'Disagree and Commit':\n\n1. Expreso mi opinión claramente y una vez: Comparto mi perspectiva técnica con argumentos concretos, antes o durante la toma de decisión. El equipo merece escuchar todas las opciones.\n\n2. Una vez tomada la decisión, me comprometo al 100%: Independientemente de si fue mi propuesta la elegida, ejecuto con la misma energía y calidad que si fuera mía. Las decisiones divididas en ejecución son peores que una decisión imperfecta ejecutada en unidad.\n\n3. Aprendo de los resultados: Si la decisión que no apoyé funciona bien, actualizo mi modelo mental. Si genera problemas, lo señalo constructivamente con enfoque en la solución, no en el 'te lo dije'.\n\nEste principio es esencial en equipos de alto rendimiento donde la autonomía y la confianza son fundamentales.",
+    "category": "cultural-fit",
+    "tags": ["Disagree and Commit", "Mentalidad de equipo", "Madurez profesional"],
+    "keyPoints": [
+      "'Disagree and Commit' es un principio de liderazgo de Amazon que valoran muchas empresas tech",
+      "La ejecución comprometida es más valiosa que tener siempre la razón",
+      "Registra tus desacuerdos en decisiones importantes para aprendizaje futuro del equipo"
+    ]
+  },
+  {
+    "id": "cult-3",
+    "question": "¿Cómo gestionas tu tiempo y priorizas cuando surgen múltiples requerimientos urgentes al mismo tiempo?",
+    "answer": "Mi proceso de gestión bajo alta demanda:\n\n1. Clasificar por impacto/urgencia: Uso mentalmente una matriz de Eisenhower (urgente+importante vs no urgente+importante). No todo lo que llega como 'urgente' lo es realmente.\n\n2. Comunicar temprano: Ante múltiples prioridades conflictivas, comunico inmediatamente a los stakeholders relevantes. Nunca asumo en silencio qué es más importante sin validar.\n\n3. Negociar plazos con contexto: Explico qué implica priorizar una tarea sobre otra (qué se retrasa) para que la decisión de prioridad sea consciente e informada.\n\n4. Timeboxing y foco: Una vez acordada la prioridad, trabajo en bloques de tiempo con foco total en una tarea. Cambiar de contexto constantemente destruye la productividad.\n\n5. Documentar el acuerdo: Dejo por escrito (Slack, Jira, email) el acuerdo de prioridades para que todos estén alineados y haya trazabilidad.",
+    "category": "cultural-fit",
+    "tags": ["Gestión del tiempo", "Priorización", "Comunicación", "Productividad"],
+    "keyPoints": [
+      "Nunca priorizar en silencio: siempre comunicar el tradeoff antes de ejecutar",
+      "La matriz de Eisenhower es una herramienta mental útil para clasificar rápidamente",
+      "Documentar el acuerdo protege al equipo y genera confianza con stakeholders"
+    ]
+  },
+  {
+    "id": "cult-4",
+    "question": "¿Cómo das y recibes feedback técnico continuo (ej. en revisiones de código / Pull Requests)?",
+    "answer": "El feedback técnico de calidad es una de las habilidades más valiosas en un equipo de ingeniería.\n\n▸ Al dar feedback:\n• Me enfoco en el código, no en la persona. 'Esta función podría ser más legible si...' en vez de 'Tu código es difícil de entender'.\n• Explico el porqué: el contexto detrás de un comentario es tan valioso como el comentario mismo.\n• Distingo entre bloqueante (debe cambiar antes del merge) y sugerencia (mejora opcional).\n• Si algo está bien hecho, lo digo explícitamente. El feedback positivo también forma cultura.\n\n▸ Al recibir feedback:\n• Lo recibo como información, no como crítica personal. El revisor tiene contexto que yo puedo no tener.\n• Si no estoy de acuerdo, pregunto y abro la discusión con datos, no me defiendo emocionalmente.\n• Agradezco el tiempo invertido. Un buen code review es un regalo para la calidad del producto.\n\nEl objetivo final de un PR review no es aprobar o rechazar; es elevar la calidad colectiva del código.",
+    "category": "cultural-fit",
+    "tags": ["Code Review", "Feedback", "Comunicación técnica", "Cultura de equipo"],
+    "keyPoints": [
+      "Usar el método 'feedback de comportamiento': Observación + Impacto + Alternativa",
+      "Los comentarios deben tener intención constructiva, no demostrativa de conocimiento",
+      "Establecer acuerdos de equipo sobre qué es 'bloqueante' vs 'sugerencia' en PRs"
+    ]
+  }
+]
