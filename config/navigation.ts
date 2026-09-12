@@ -4,6 +4,7 @@ import {
   faBrain,
   faCode,
   faHandshake,
+  faSquarePlus,
 } from "@fortawesome/free-solid-svg-icons";
 import type { NavItem } from "@/types/navigation";
 
@@ -37,5 +38,11 @@ export const NAV_ITEMS: readonly NavItem[] = [
     href: "/cultural-fit",
     icon: faHandshake,
     description: "Valores, trabajo en equipo y resolución de conflictos",
+  },
+  {
+    label: "Agregar preguntas",
+    href: "/questions/new",
+    icon: faSquarePlus,
+    description: "Añade preguntas mediante formulario o JSON RAW",
   },
 ] as const;

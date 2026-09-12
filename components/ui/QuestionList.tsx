@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInbox } from "@fortawesome/free-solid-svg-icons";
 import { Question } from "@/types/question";
@@ -16,7 +17,14 @@ export function QuestionList({
   className,
   showTags = true,
 }: QuestionListProps) {
-  if (questions.length === 0) {
+  const [deletedQuestionIds, setDeletedQuestionIds] = useState<Set<string>>(
+    () => new Set(),
+  );
+  const visibleQuestions = questions.filter(
+    (question) => !deletedQuestionIds.has(question.id),
+  );
+
+  if (visibleQuestions.length === 0) {
     return (
       <div
         className={`flex flex-col items-center justify-center py-16 text-center text-zinc-400 dark:text-zinc-600 gap-4 ${className ?? ""}`}
@@ -29,11 +37,14 @@ export function QuestionList({
 
   return (
     <div className={`space-y-3 ${className ?? ""}`}>
-      {questions.map((item) => (
+      {visibleQuestions.map((item) => (
         <QuestionAccordion
           key={item.id}
           question={item}
           showTags={showTags}
+          onDeleted={(id) =>
+            setDeletedQuestionIds((current) => new Set(current).add(id))
+          }
         />
       ))}
     </div>

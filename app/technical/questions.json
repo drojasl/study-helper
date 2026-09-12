@@ -1,50 +1,19 @@
 [
   {
-    "id": "tech-1",
-    "question": "¿Qué es el Event Loop en JavaScript y cómo interactúan el Call Stack, Web APIs y la Task/Microtask Queue?",
-    "answer": "El Event Loop es el mecanismo central que permite a JavaScript (single-threaded) ejecutar código asíncrono sin bloquear el hilo principal.\n\n▸ Call Stack: Pila de ejecución síncrona. Las funciones se apilan (push) al llamarse y se desapilan (pop) al retornar.\n\n▸ Web APIs (en el browser) / libuv (en Node): Manejan operaciones asíncronas (setTimeout, fetch, I/O). Cuando finalizan, colocan el callback en la queue correspondiente.\n\n▸ Microtask Queue (alta prioridad): Contiene callbacks de Promises (.then, .catch) y MutationObserver. Se vacía COMPLETAMENTE antes de procesar la siguiente macrotask.\n\n▸ Macrotask Queue (Task Queue): Contiene callbacks de setTimeout, setInterval, I/O. Se procesa de a UNA tarea por iteración del Event Loop.\n\n▸ Event Loop: Continuamente verifica si el Call Stack está vacío. Si lo está, primero vacía las microtasks y luego toma una macrotask.\n\nEjemplo de orden de ejecución:\nconsole.log('1') → setTimeout(fn, 0) → Promise.resolve().then(fn) → console.log('2')\nSalida: 1, 2, [Promise callback], [setTimeout callback]",
+    "question": "SOLID principles",
+    "answer": "SOLID is a set of five principles for writing maintainable and flexible object-oriented code:\n\n**Single Responsibility** means one class should have one responsibility.\n**Open/Closed** Principle means that software entities should be open for extension but closed for modification.\n**Liskov Substitution** means subclasses should be usable instead of their parent class.\n**Interface Segregation** means we should prefer small, focused interfaces.\n**Dependency Inversion** means depending on abstractions rather than concrete implementations.",
     "category": "technical",
-    "tags": ["JavaScript", "Asincronía", "Event Loop", "Promises"],
+    "tags": [
+      "SOLID",
+      "POO"
+    ],
     "keyPoints": [
-      "Microtasks SIEMPRE tienen prioridad sobre macrotasks",
-      "El Call Stack debe estar vacío para que el Event Loop procese cualquier queue",
-      "async/await es syntactic sugar sobre Promises (microtasks)"
-    ]
-  },
-  {
-    "id": "tech-2",
-    "question": "Explica los principios SOLID y da un ejemplo práctico de Inversión de Dependencias (DIP).",
-    "answer": "SOLID es un acrónimo de 5 principios de diseño orientado a objetos para crear software más mantenible y escalable:\n\n▸ S - Single Responsibility Principle: Una clase debe tener una sola razón para cambiar. Ejemplo: separar la lógica de negocio de la persistencia en BD.\n\n▸ O - Open/Closed Principle: Las entidades deben estar abiertas a extensión pero cerradas a modificación. Usar herencia o composición en lugar de modificar código existente.\n\n▸ L - Liskov Substitution Principle: Los subtipos deben ser sustituibles por sus tipos base sin alterar la corrección del programa.\n\n▸ I - Interface Segregation Principle: Es mejor tener múltiples interfaces específicas que una interfaz general. Los clientes no deben depender de métodos que no usan.\n\n▸ D - Dependency Inversion Principle (DIP): Los módulos de alto nivel no deben depender de módulos de bajo nivel; ambos deben depender de abstracciones.\n\nEjemplo DIP:\nEn vez de que UserService instancie directamente MySQLDatabase, definimos una interfaz DatabaseInterface. UserService depende de la interfaz; MySQLDatabase la implementa. Esto permite intercambiar la BD (MySQL → PostgreSQL → SQLite) sin tocar UserService, y facilita tests con mocks.",
-    "category": "technical",
-    "tags": ["SOLID", "Arquitectura", "Patrones de diseño", "OOP"],
-    "keyPoints": [
-      "SOLID no son reglas absolutas, son guías para código más mantenible",
-      "DIP facilita la inyección de dependencias y el testing",
-      "Conocer un ejemplo concreto de cada principio es clave en entrevistas"
-    ]
-  },
-  {
-    "id": "tech-3",
-    "question": "Bases de Datos Relacionales (SQL) vs No Relacionales (NoSQL): diferencias clave, ACID vs BASE y casos de uso.",
-    "answer": "▸ Relacionales (SQL) — MySQL, PostgreSQL, SQLite:\n• Estructura en tablas con esquema rígido y relaciones normalizadas.\n• Garantías ACID: Atomicidad, Consistencia, Aislamiento, Durabilidad.\n• Mejor para: datos estructurados, relaciones complejas, transacciones financieras, reportes.\n\n▸ No Relacionales (NoSQL) — MongoDB, Redis, Cassandra:\n• Estructuras flexibles: documentos, clave-valor, columnas, grafos.\n• Modelo BASE: Basically Available, Soft-state, Eventual consistency.\n• Mejor para: alta escalabilidad horizontal, datos no estructurados o semi-estructurados, tiempo real, caché.\n\n▸ ACID vs BASE:\n• ACID prioriza consistencia absoluta (bancaria, e-commerce crítico).\n• BASE prioriza disponibilidad y rendimiento (redes sociales, analytics, IoT).\n\n▸ Regla práctica:\n• Si necesitas JOINs complejos y transacciones → SQL.\n• Si necesitas escalar horizontalmente con millones de operaciones por segundo → NoSQL.\n• En sistemas modernos, muchas arquitecturas combinan ambas (polyglot persistence).",
-    "category": "technical",
-    "tags": ["Bases de datos", "SQL", "NoSQL", "ACID", "Arquitectura"],
-    "keyPoints": [
-      "No hay una opción 'mejor': depende del caso de uso",
-      "Polyglot persistence: usar SQL y NoSQL juntos según la necesidad",
-      "Redis es NoSQL pero puede configurarse para comportamientos más ACID"
-    ]
-  },
-  {
-    "id": "tech-4",
-    "question": "¿Cuáles son las principales estrategias para optimizar el rendimiento (Core Web Vitals) en una aplicación web moderna?",
-    "answer": "Los Core Web Vitals de Google miden experiencia real de usuario: LCP (carga), INP (interactividad) y CLS (estabilidad visual).\n\n▸ Renderizado (SSR / SSG / ISR):\n• SSG para contenido estático → tiempo de carga mínimo.\n• SSR para contenido dinámico → mejor que CSR puro para SEO y LCP.\n• ISR (Incremental Static Regeneration en Next.js) combina lo mejor de ambos.\n\n▸ Imágenes optimizadas:\n• Usar next/image (lazy loading, WebP automático, dimensiones declaradas → evita CLS).\n\n▸ Code Splitting y Lazy Loading:\n• Dynamic imports con next/dynamic o React.lazy para cargar solo el JS necesario.\n• Reducir el bundle inicial impacta directamente el LCP e INP.\n\n▸ CDN y Caching:\n• Servir assets estáticos desde edge (Vercel Edge Network, Cloudflare).\n• Cache-Control headers apropiados para reducir latencia en recursos frecuentes.\n\n▸ Fonts y CSS:\n• Usar next/font con display: swap para evitar FOIT (Flash of Invisible Text).\n• Purgar CSS no utilizado (Tailwind lo hace por defecto).\n\n▸ Monitoreo:\n• Lighthouse, Web Vitals en Chrome DevTools y RUM (Real User Monitoring) en producción.",
-    "category": "technical",
-    "tags": ["Performance", "Core Web Vitals", "Next.js", "SSR", "Optimización"],
-    "keyPoints": [
-      "LCP < 2.5s, INP < 200ms, CLS < 0.1 son los umbrales 'Good' de Google",
-      "El mayor impacto suele estar en: imágenes sin dimensiones, JS bloqueante y fonts sin optimizar",
-      "next/image y next/font resuelven automáticamente la mayoría de problemas de CLS"
-    ]
+      "Single Responsibility",
+      "Open/Closed Principle",
+      "Liskov Substitution",
+      "Interface Segregation",
+      "Dependency Inversion"
+    ],
+    "id": "technical-1"
   }
 ]
