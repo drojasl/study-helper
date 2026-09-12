@@ -15,5 +15,18 @@
       "Dependency Inversion"
     ],
     "id": "technical-1"
+  },
+  {
+    "id": "technical-2",
+    "question": "Difference between a class and an object",
+    "answer": "A **class** is a template that defines the properties and behaviors that the objects created from it will have. \nAn **object**, on the other hand, is an instance of a class. It is a specific realization of the class with its own unique state and behavior.",
+    "category": "technical",
+    "tags": [
+      "POO"
+    ],
+    "keyPoints": [
+      "Class: Blueprint for creating objects",
+      "Object: Instance of a class"
+    ]
   }
 ]

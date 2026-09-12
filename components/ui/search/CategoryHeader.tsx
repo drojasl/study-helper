@@ -15,7 +15,7 @@ export function CategoryHeader({
   children,
 }: CategoryHeaderProps) {
   return (
-    <div className="flex flex-col gap-3 pb-1">
+    <div className="flex flex-col gap-2 pb-1">
       {/* Badge */}
       <div className="flex items-center gap-2">
         <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">

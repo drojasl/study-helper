@@ -7,7 +7,7 @@ import type { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import type { Question } from "@/types/question";
 import { useSearch } from "@/hooks/useSearch";
 import { CategoryHeader } from "./CategoryHeader";
-import { QuestionList } from "./QuestionList";
+import { QuestionList } from "../questions/QuestionList";
 import { SearchBar } from "./SearchBar";
 import { TagFilter } from "./TagFilter";
 

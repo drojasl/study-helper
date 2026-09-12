@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,10 +17,24 @@ export function SearchBar({
   onSearchChange,
   onSuggestionSelect,
 }: SearchBarProps) {
-  const hasSuggestions = searchTerm.trim().length > 0 && suggestions.length > 0;
+  const searchBarRef = useRef<HTMLDivElement>(null);
+  const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false);
+  const hasSuggestions =
+    isSuggestionsOpen && searchTerm.trim().length > 0 && suggestions.length > 0;
+
+  useEffect(() => {
+    function handlePointerDown(event: PointerEvent) {
+      if (!searchBarRef.current?.contains(event.target as Node)) {
+        setIsSuggestionsOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, []);
 
   return (
-    <div className="relative">
+    <div ref={searchBarRef} className="relative">
       <label htmlFor="question-search" className="sr-only">
         Buscar preguntas
       </label>
@@ -31,7 +48,11 @@ export function SearchBar({
           id="question-search"
           type="search"
           value={searchTerm}
-          onChange={(event) => onSearchChange(event.target.value)}
+          onFocus={() => setIsSuggestionsOpen(true)}
+          onChange={(event) => {
+            onSearchChange(event.target.value);
+            setIsSuggestionsOpen(true);
+          }}
           placeholder="Buscar por pregunta, respuesta o tag..."
           autoComplete="off"
           className="min-h-12 w-full rounded-xl border border-zinc-200 bg-white py-3 pl-11 pr-4 text-sm text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:placeholder:text-zinc-600"
@@ -51,7 +72,10 @@ export function SearchBar({
               role="option"
               aria-selected={false}
               onMouseDown={(event) => event.preventDefault()}
-              onClick={() => onSuggestionSelect(suggestion)}
+              onClick={() => {
+                onSuggestionSelect(suggestion);
+                setIsSuggestionsOpen(false);
+              }}
               className="min-h-11 w-full px-4 py-2 text-left text-sm text-zinc-700 transition hover:bg-zinc-100 focus:bg-zinc-100 focus:outline-none dark:text-zinc-300 dark:hover:bg-zinc-900 dark:focus:bg-zinc-900"
             >
               {suggestion}

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { faCode } from "@fortawesome/free-solid-svg-icons";
 import { Question } from "@/types/question";
-import { CategorySearch } from "@/components/ui/CategorySearch";
+import { CategorySearch } from "@/components/ui/search/CategorySearch";
 import questionsData from "./questions.json";
 
 export const metadata: Metadata = {

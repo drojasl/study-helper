@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInbox } from "@fortawesome/free-solid-svg-icons";
 import { Question } from "@/types/question";
-import { QuestionAccordion } from "./QuestionAccordion";
+import { QuestionAccordion } from "../accordion/QuestionAccordion";
 
 interface QuestionListProps {
   questions: Question[];
@@ -36,7 +36,7 @@ export function QuestionList({
   }
 
   return (
-    <div className={`space-y-3 ${className ?? ""}`}>
+    <div className={`space-y-3 mb-100 ${className ?? ""}`}>
       {visibleQuestions.map((item) => (
         <QuestionAccordion
           key={item.id}

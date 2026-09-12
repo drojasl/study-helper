@@ -11,6 +11,13 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 # Configuración de Agentes (Subagents)
 *Nota: La configuración de los agentes está organizada en archivos independientes para evitar sobrecarga de contexto.*
 
+## Regla de diseño previo a la implementación
+- Antes de crear o modificar componentes, el agente debe identificar las responsabilidades independientes, los límites de cada componente y la agrupación de carpetas que corresponde a cada dominio.
+- Los componentes deben crearse desde el inicio con una responsabilidad clara. No se debe concentrar una vista completa, lógica de interacción, contenido de presentación y acciones de administración en un único componente para refactorizarlo después.
+- Cuando existan partes reutilizables o con estado propio, deben extraerse desde la primera implementación en componentes, hooks o utilidades con nombres descriptivos.
+- Antes del primer edit, el agente debe revisar los componentes y patrones cercanos, proponer mentalmente la estructura final y aplicar directamente esa estructura. Las refactorizaciones posteriores deben reservarse para cambios de comportamiento o deuda técnica preexistente.
+- La revisión final debe comprobar que los archivos nuevos están agrupados por responsabilidad y que el componente coordinador solo compone piezas, sin absorber la lógica de sus hijos.
+
 ## ⚠️ Regla Estricta de Transición entre Fases y Agentes
 - **Control por el Usuario**: Cada subagente o fase únicamente concluye su labor y se da por finalizada cuando el usuario lo aprueba explícitamente o pide de forma directa pasar a otra fase.
 - **Prohibido el avance automático**: Bajo ninguna circunstancia el asistente debe encadenar o invocar automáticamente al siguiente agente del flujo (por ejemplo, pasar del planeador de alto nivel al planeador detallado, o del planeador al ejecutor) sin que el usuario haya revisado el resultado y haya dado su visto bueno expreso para avanzar.

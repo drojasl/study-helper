@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { QuestionForm } from "@/components/ui/QuestionForm";
+import { QuestionForm } from "@/components/ui/questions/QuestionForm";
 import type { Question, QuestionCategory } from "@/types/question";
 
 export const metadata: Metadata = {
