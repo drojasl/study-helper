@@ -1,50 +1,162 @@
 [
   {
     "id": "hr-1",
-    "question": "Cuéntame sobre ti y tu trayectoria profesional.",
-    "answer": "Soy desarrollador de software con enfoque en desarrollo web full-stack. Mi trayectoria comenzó con tecnologías backend como PHP y Laravel, y fui expandiéndome hacia el frontend con React y Next.js.\n\n▸ Presente: Actualmente trabajo en proyectos web complejos que combinan arquitecturas REST, bases de datos relacionales y UI modernas con TypeScript.\n▸ Pasado: He contribuido en equipos ágiles, participando en definición de requerimientos, code reviews y despliegues en producción con pipelines CI/CD.\n▸ Futuro: Busco seguir creciendo en arquitectura de software escalable, contribuyendo a productos que generen impacto real en los usuarios.\n\nMi propuesta de valor está en la combinación de solidez técnica backend con sensibilidad de producto para el frontend.",
     "category": "hr",
-    "tags": ["Presentación", "Trayectoria", "Propuesta de valor"],
-    "keyPoints": [
-      "Estructura: Presente → Pasado → Futuro",
-      "Vincular la historia personal con el valor que aportas al equipo",
-      "Mantener respuesta entre 90 y 120 segundos"
-    ]
+    "question": "Tell me about yourself",
+    "answer": "**I'm a Senior Full Stack Developer** with over 15 years of experience, mainly focused on PHP and Laravel on the backend and React, Vue, and Angular on the frontend.\n\nI focus on building maintainable systems, solving complex problems, and delivering business value.",
+    "tags": ["PHP", "Laravel", "React", "Vue", "Angular", "Senior Developer"],
+    "keyPoints": ["15+ years of experience", "Full Stack development", "PHP/Laravel expertise", "Business-oriented problem solving"]
   },
   {
     "id": "hr-2",
-    "question": "Describe una situación de alta presión o conflicto en un proyecto anterior (Metodología STAR).",
-    "answer": "▸ Situación: En un proyecto de migración de base de datos en producción, detectamos un error crítico horas antes del lanzamiento que afectaba la integridad de los datos de clientes.\n\n▸ Tarea: Como tech lead de turno, era mi responsabilidad coordinar la resolución sin retrasar el deployment más de lo necesario y comunicar el estado al cliente.\n\n▸ Acción: Convoqué una sesión de troubleshooting inmediata con el equipo. Implementé un script de validación para identificar los registros afectados, aplicamos un rollback parcial y documentamos el fix en tiempo real. Mantuve comunicación transparente con el cliente sobre tiempos estimados.\n\n▸ Resultado: Lanzamos con 4 horas de retraso, cero pérdida de datos y el cliente valoró positivamente la comunicación proactiva. Documentamos el proceso como protocolo de incidentes para el equipo.",
     "category": "hr",
-    "tags": ["STAR", "Resolución de conflictos", "Liderazgo", "Presión"],
-    "keyPoints": [
-      "Usar siempre la estructura: Situación → Tarea → Acción → Resultado",
-      "El resultado debe ser medible (tiempo, impacto, aprendizaje)",
-      "Mostrar reflexión sobre lo aprendido"
-    ]
+    "question": "Walk me through your professional background",
+    "answer": "**My career has mainly focused on web development**, evolving from backend PHP development into full-stack roles.\n\nOver time, I've worked with Laravel, modern JavaScript frameworks, APIs, databases, cloud services, and distributed systems.",
+    "tags": ["Career", "PHP", "Laravel", "Full Stack", "Web Development"],
+    "keyPoints": ["Backend to Full Stack evolution", "Long-term web development experience", "Modern architecture and technologies"]
   },
   {
     "id": "hr-3",
-    "question": "¿Cuáles consideras que son tus mayores fortalezas y áreas de oportunidad?",
-    "answer": "▸ Fortalezas:\n• Capacidad de descomponer problemas técnicos complejos en soluciones pragmáticas y entregables.\n• Comunicación técnica clara hacia perfiles no técnicos (stakeholders, diseñadores, PM).\n• Aprendizaje autónomo acelerado: cuando enfrento una tecnología nueva, logro ser productivo rápidamente con una metodología de estudio estructurada.\n\n▸ Áreas de oportunidad:\n• Delegar tareas cuando asumo que es más rápido hacerlo yo mismo. Estoy trabajando en esto conscientizando el beneficio del crecimiento del equipo.\n• Perfeccionismo en código propio: a veces invierto tiempo extra en detalles de implementación internos. Estoy aplicando la práctica de timeboxing para entregas iterativas.\n\nSoy consciente de ambas áreas y tengo acciones concretas para seguir mejorando.",
     "category": "hr",
-    "tags": ["Autoconocimiento", "Fortalezas", "Áreas de mejora"],
-    "keyPoints": [
-      "Ser honesto pero estratégico: elige áreas de oportunidad reales que no sean debilidades críticas para el rol",
-      "Siempre acompañar las áreas de oportunidad con acciones concretas de mejora",
-      "Evitar respuestas genéricas como 'soy perfeccionista' sin contexto"
-    ]
+    "question": "Why are you looking for a new job?",
+    "answer": "I'm looking for a role where I can take on **meaningful technical challenges**, contribute at a senior level, and continue growing while having a measurable impact on the product and engineering team.",
+    "tags": ["Career", "Motivation", "Growth", "Senior Developer"],
+    "keyPoints": ["Technical challenges", "Professional growth", "Meaningful impact"]
   },
   {
     "id": "hr-4",
-    "question": "¿Por qué te interesa formar parte de nuestro equipo y proyecto?",
-    "answer": "Me atrae este rol por tres razones principales:\n\n1. Impacto técnico real: El tipo de producto que construyen tiene un alcance y escala que representa un desafío técnico genuino, no solo mantenimiento de software.\n\n2. Retos de arquitectura y stack: El stack tecnológico está alineado con las áreas en que quiero seguir profundizando: sistemas distribuidos, APIs de alto rendimiento y frontend moderno.\n\n3. Crecimiento profesional: Valoro equipos donde el code review es cultura y donde el aprendizaje continuo es parte del día a día, no una excepción.\n\nNo busco simplemente un nuevo trabajo; busco un entorno donde mis habilidades generen valor mientras sigo creciendo como ingeniero.",
     "category": "hr",
-    "tags": ["Motivación", "Fit cultural", "Objetivos profesionales"],
-    "keyPoints": [
-      "Investigar previamente la empresa: producto, tecnología, cultura",
-      "Conectar motivaciones personales con el proyecto específico",
-      "Demostrar que es una decisión reflexiva, no oportunista"
-    ]
+    "question": "Why this position?",
+    "answer": "The position matches my experience in **backend development, APIs, databases, and modern frontend technologies**, while also giving me the opportunity to contribute to architecture and technical decisions.",
+    "tags": ["Position", "PHP", "APIs", "Architecture", "Full Stack"],
+    "keyPoints": ["Relevant technical experience", "Architecture involvement", "Senior-level contribution"]
+  },
+  {
+    "id": "hr-5",
+    "category": "hr",
+    "question": "Why this company?",
+    "answer": "I'm interested because the role combines **strong engineering challenges** with a product where technical decisions can have real business impact.\n\nI'm also looking for a collaborative environment with high engineering standards.",
+    "tags": ["Company", "Culture", "Engineering", "Business"],
+    "keyPoints": ["Engineering challenges", "Business impact", "Strong engineering culture"]
+  },
+  {
+    "id": "hr-6",
+    "category": "hr",
+    "question": "What are your strengths?",
+    "answer": "My main strengths are **problem solving, backend architecture, debugging complex issues, and adapting to different technologies**.\n\nI also focus strongly on maintainability and long-term technical quality.",
+    "tags": ["Strengths", "Architecture", "Problem Solving", "Debugging"],
+    "keyPoints": ["Problem solving", "Architecture", "Debugging", "Maintainability"]
+  },
+  {
+    "id": "hr-7",
+    "category": "hr",
+    "question": "What is your biggest weakness?",
+    "answer": "I can sometimes spend too much time refining a solution.\n\nI've learned to **balance technical quality with business priorities and delivery timelines**.",
+    "tags": ["Weakness", "Self-Awareness", "Prioritization"],
+    "keyPoints": ["Over-engineering tendency", "Balance quality and delivery", "Self-awareness"]
+  },
+  {
+    "id": "hr-8",
+    "category": "hr",
+    "question": "What is your biggest professional achievement?",
+    "answer": "One of my strongest achievements has been consistently taking **complex systems and improving their maintainability, performance, and reliability** while continuing to deliver new business functionality.",
+    "tags": ["Achievement", "Architecture", "Performance", "Maintainability"],
+    "keyPoints": ["System improvement", "Maintainability", "Performance", "Business delivery"]
+  },
+  {
+    "id": "hr-9",
+    "category": "hr",
+    "question": "Tell me about a challenging project",
+    "answer": "I worked on systems where I had to balance **legacy code, business requirements, performance constraints, and new functionality**.\n\nThe key was understanding the existing behavior, identifying the highest-risk areas, and improving the system incrementally.",
+    "tags": ["Challenge", "Legacy", "Architecture", "Performance"],
+    "keyPoints": ["Legacy systems", "Risk management", "Incremental improvement", "Business requirements"]
+  },
+  {
+    "id": "hr-10",
+    "category": "hr",
+    "question": "Tell me about a disagreement with a teammate",
+    "answer": "I focus the discussion on **technical trade-offs and evidence rather than personal preferences**.\n\nIf needed, I use a small proof of concept or measurable criteria to reach an objective decision.",
+    "tags": ["Conflict", "Teamwork", "Communication", "Technical Decisions"],
+    "keyPoints": ["Objective discussion", "Technical trade-offs", "Evidence-based decisions"]
+  },
+  {
+    "id": "hr-11",
+    "category": "hr",
+    "question": "How do you work under pressure?",
+    "answer": "I prioritize based on **business impact and risk**, communicate constraints early, and break complex work into smaller deliverables.\n\nThe goal is to remain predictable without sacrificing critical quality.",
+    "tags": ["Pressure", "Prioritization", "Risk Management", "Delivery"],
+    "keyPoints": ["Business impact", "Risk prioritization", "Incremental delivery", "Predictability"]
+  },
+  {
+    "id": "hr-12",
+    "category": "hr",
+    "question": "How do you prioritize tasks?",
+    "answer": "I prioritize according to **business impact, urgency, dependencies, technical risk, and effort**.\n\nI also validate priorities with stakeholders when trade-offs are significant.",
+    "tags": ["Prioritization", "Planning", "Risk", "Business"],
+    "keyPoints": ["Business impact", "Dependencies", "Technical risk", "Stakeholder alignment"]
+  },
+  {
+    "id": "hr-13",
+    "category": "hr",
+    "question": "How do you receive feedback?",
+    "answer": "I treat feedback as **input for improvement**.\n\nI focus on understanding the reasoning behind it, evaluating it objectively, and applying it when it improves the outcome.",
+    "tags": ["Feedback", "Growth", "Communication"],
+    "keyPoints": ["Objective evaluation", "Continuous improvement", "Open communication"]
+  },
+  {
+    "id": "hr-14",
+    "category": "hr",
+    "question": "Tell me about a professional mistake",
+    "answer": "I've learned that moving too quickly into implementation without clarifying assumptions can create unnecessary rework.\n\nNow I make **important requirements, risks, and trade-offs explicit before implementation**.",
+    "tags": ["Mistake", "Learning", "Requirements", "Planning"],
+    "keyPoints": ["Clarify assumptions", "Reduce rework", "Identify risks early"]
+  },
+  {
+    "id": "hr-15",
+    "category": "hr",
+    "question": "How do you handle team conflict?",
+    "answer": "I try to separate the **technical or business issue from the people involved**.\n\nI encourage direct communication, focus on facts and objectives, and look for a solution that the team can commit to.",
+    "tags": ["Conflict", "Teamwork", "Communication", "Leadership"],
+    "keyPoints": ["Separate people from issues", "Fact-based discussion", "Team alignment"]
+  },
+  {
+    "id": "hr-16",
+    "category": "hr",
+    "question": "How do you explain technical concepts to non-technical people?",
+    "answer": "I focus on the **business impact rather than implementation details**.\n\nI use simple language, relevant examples, and explain trade-offs only when they affect the decision.",
+    "tags": ["Communication", "Stakeholders", "Business", "Technical"],
+    "keyPoints": ["Business impact", "Simple language", "Relevant examples", "Trade-offs"]
+  },
+  {
+    "id": "hr-17",
+    "category": "hr",
+    "question": "How do you keep your skills updated?",
+    "answer": "I learn continuously through **documentation, hands-on projects, technical communities, and new tools**.\n\nI also validate new technologies through practical experimentation instead of following trends blindly.",
+    "tags": ["Learning", "Technology", "Career", "Innovation"],
+    "keyPoints": ["Continuous learning", "Hands-on experimentation", "Technology evaluation"]
+  },
+  {
+    "id": "hr-18",
+    "category": "hr",
+    "question": "What is your preferred work environment?",
+    "answer": "I work best in an environment with **clear goals, technical autonomy, open communication, and accountability**.\n\nI value teams where engineers can challenge ideas constructively.",
+    "tags": ["Work Environment", "Culture", "Autonomy", "Teamwork"],
+    "keyPoints": ["Clear goals", "Technical autonomy", "Open communication", "Constructive challenge"]
+  },
+  {
+    "id": "hr-19",
+    "category": "hr",
+    "question": "What are your career goals?",
+    "answer": "I want to continue growing as a **senior engineer**, take more ownership of architecture and technical decisions, and contribute to mentoring and improving engineering practices.",
+    "tags": ["Career", "Growth", "Architecture", "Leadership", "Mentoring"],
+    "keyPoints": ["Technical growth", "Architecture ownership", "Mentoring", "Engineering practices"]
+  },
+  {
+    "id": "hr-20",
+    "category": "hr",
+    "question": "What are your salary expectations?",
+    "answer": "Based on my experience and the scope of the role, I'm targeting compensation **above $5,000 USD per month**.\n\nI'm also open to discussing the overall package and responsibilities.",
+    "tags": ["Salary", "Compensation", "Expectations"],
+    "keyPoints": ["$5K+ monthly target", "Role scope", "Total compensation"]
   }
 ]
