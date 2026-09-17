@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { promises as fs } from "node:fs";
-import path from "node:path";
 import { faLaptopCode } from "@fortawesome/free-solid-svg-icons";
-import { Question } from "@/types/question";
+import { readQuestions } from "@/lib/questions";
 import { CategorySearch } from "@/components/ui/search/CategorySearch";
 import { QuestionRouteRefresher } from "@/components/ui/questions/QuestionRouteRefresher";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Entrevista Técnica de Código | Study Helper",
@@ -14,9 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function CodePage() {
-  const questions = JSON.parse(
-    await fs.readFile(path.join(process.cwd(), "app", "code", "questions.json"), "utf8"),
-  ) as Question[];
+  const questions = await readQuestions("code");
 
   return (
     <>

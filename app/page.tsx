@@ -42,6 +42,7 @@ export default function Home() {
             <Link
               key={item.href}
               href={item.href}
+              prefetch={false}
               className="group relative flex flex-col justify-between p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-md transition-all"
             >
               <div className="space-y-3">

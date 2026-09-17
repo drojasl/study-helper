@@ -1,7 +1,6 @@
-import { promises as fs } from "node:fs";
-import path from "node:path";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
+import { readQuestions, writeQuestions } from "@/lib/questions";
 import type { Question, QuestionCategory } from "@/types/question";
 
 const categories: readonly QuestionCategory[] = [
@@ -72,24 +71,8 @@ function nextId(questions: Question[], category: QuestionCategory): string {
   return `${prefix}${highestId + 1}`;
 }
 
-function getQuestionFilePath(category: QuestionCategory): string {
-  return path.join(process.cwd(), "app", category, "questions.json");
-}
-
 function getCategoryPath(category: QuestionCategory): string {
   return category === "technical" ? "/technical" : `/${category}`;
-}
-
-async function readQuestions(category: QuestionCategory): Promise<Question[]> {
-  return JSON.parse(await fs.readFile(getQuestionFilePath(category), "utf8")) as Question[];
-}
-
-async function writeQuestions(category: QuestionCategory, questions: Question[]) {
-  await fs.writeFile(
-    getQuestionFilePath(category),
-    `${JSON.stringify(questions, null, 2)}\n`,
-    "utf8",
-  );
 }
 
 export async function POST(request: Request) {

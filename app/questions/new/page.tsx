@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { promises as fs } from "node:fs";
-import path from "node:path";
 import { QuestionForm } from "@/components/ui/questions/QuestionForm";
+import { readQuestions } from "@/lib/questions";
 import type { Question, QuestionCategory } from "@/types/question";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: "Agregar preguntas | Study Helper",
@@ -23,8 +25,7 @@ export default async function NewQuestionPage({ searchParams }: NewQuestionPageP
   let initialQuestion: Question | undefined;
 
   if (category && params.id) {
-    const filePath = path.join(process.cwd(), "app", category, "questions.json");
-    const questions = JSON.parse(await fs.readFile(filePath, "utf8")) as Question[];
+    const questions = await readQuestions(category);
     initialQuestion = questions.find((question) => question.id === params.id);
   }
 
