@@ -18,12 +18,15 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            set -e
+
             echo "🚀 Iniciando deploy..."
 
             cd /var/www/interviewier
 
             echo "📥 Actualizando código..."
-            git pull origin main
+            git pull --ff-only origin main
+            echo "Commit desplegado: $(git rev-parse --short HEAD)"
 
             echo "📦 Instalando dependencias..."
             npm install
@@ -32,6 +35,10 @@ jobs:
             npm run build
 
             echo "🔁 Reiniciando aplicación..."
-            pm2 restart interviewier
+            pm2 restart interviewier --update-env
+            pm2 save
+
+            echo "🔎 Verificando aplicación..."
+            curl --fail --silent --show-error http://127.0.0.1:3000/technical > /dev/null
 
             echo "✅ Deploy terminado"

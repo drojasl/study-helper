@@ -8,20 +8,8 @@ export function getQuestionsFilePath(category: QuestionCategory): string {
 
 export async function readQuestions(category: QuestionCategory): Promise<Question[]> {
   const filePath = getQuestionsFilePath(category);
-  console.error("[questions-debug] read:start", {
-    category,
-    filePath,
-    timestamp: new Date().toISOString(),
-  });
   const content = await fs.readFile(filePath, "utf8");
-  const questions = JSON.parse(content) as Question[];
-  console.error("[questions-debug] read:done", {
-    category,
-    count: questions.length,
-    ids: questions.map((question) => question.id),
-    timestamp: new Date().toISOString(),
-  });
-  return questions;
+  return JSON.parse(content) as Question[];
 }
 
 export async function writeQuestions(
@@ -29,17 +17,5 @@ export async function writeQuestions(
   questions: Question[],
 ): Promise<void> {
   const filePath = getQuestionsFilePath(category);
-  console.error("[questions-debug] write:start", {
-    category,
-    filePath,
-    count: questions.length,
-    timestamp: new Date().toISOString(),
-  });
   await fs.writeFile(filePath, `${JSON.stringify(questions, null, 2)}\n`, "utf8");
-  console.error("[questions-debug] write:done", {
-    category,
-    filePath,
-    count: questions.length,
-    timestamp: new Date().toISOString(),
-  });
 }

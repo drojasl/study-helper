@@ -152,26 +152,12 @@ export async function PUT(request: Request) {
     const category = body.category;
     const id = body.id;
 
-    console.error("[questions-debug] PUT:start", {
-      category,
-      id,
-      question: body.question,
-      answerLength: typeof body.answer === "string" ? body.answer.length : null,
-      timestamp: new Date().toISOString(),
-    });
-
     if (!isQuestionCategory(category) || typeof id !== "string" || !id.trim()) {
       return NextResponse.json({ error: "category e id son obligatorios y válidos." }, { status: 400 });
     }
 
     const questions = await readQuestions(category);
     const questionIndex = questions.findIndex((question) => question.id === id);
-    console.error("[questions-debug] PUT:lookup", {
-      category,
-      id,
-      questionIndex,
-      timestamp: new Date().toISOString(),
-    });
     if (questionIndex === -1) {
       return NextResponse.json({ error: "No se encontró la pregunta." }, { status: 404 });
     }
@@ -180,18 +166,8 @@ export async function PUT(request: Request) {
     await writeQuestions(category, questions);
     revalidatePath(getCategoryPath(category));
 
-    console.error("[questions-debug] PUT:done", {
-      category,
-      id,
-      revalidatedPath: getCategoryPath(category),
-      question: questions[questionIndex].question,
-      answerLength: questions[questionIndex].answer.length,
-      timestamp: new Date().toISOString(),
-    });
-
     return NextResponse.json({ updated: id, category });
   } catch (error) {
-    console.error("[questions-debug] PUT:error", error);
     const message = error instanceof Error ? error.message : "No se pudo actualizar la pregunta.";
     return NextResponse.json({ error: message }, { status: 400 });
   }
