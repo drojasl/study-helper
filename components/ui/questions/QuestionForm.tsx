@@ -47,6 +47,15 @@ export function QuestionForm({ initialQuestion }: QuestionFormProps) {
     setStatus(null);
     setIsSaving(true);
 
+    console.info("[questions-debug] client-save:start", {
+      method: isEditing ? "PUT" : "POST",
+      category,
+      id: initialQuestion?.id,
+      question,
+      answerLength: answer.length,
+      timestamp: new Date().toISOString(),
+    });
+
     try {
       const payload = mode === "raw"
         ? JSON.parse(rawJson)
@@ -60,6 +69,13 @@ export function QuestionForm({ initialQuestion }: QuestionFormProps) {
         body: JSON.stringify(requestBody),
       });
       const result = await response.json() as { added?: number; category?: QuestionCategory; error?: string };
+
+      console.info("[questions-debug] client-save:response", {
+        status: response.status,
+        ok: response.ok,
+        result,
+        timestamp: new Date().toISOString(),
+      });
 
       if (!response.ok) throw new Error(result.error ?? "No se pudo guardar la pregunta.");
       setStatus({
