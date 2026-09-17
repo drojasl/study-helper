@@ -152,7 +152,7 @@ export async function PUT(request: Request) {
     const category = body.category;
     const id = body.id;
 
-    console.info("[questions-debug] PUT:start", {
+    console.error("[questions-debug] PUT:start", {
       category,
       id,
       question: body.question,
@@ -166,7 +166,7 @@ export async function PUT(request: Request) {
 
     const questions = await readQuestions(category);
     const questionIndex = questions.findIndex((question) => question.id === id);
-    console.info("[questions-debug] PUT:lookup", {
+    console.error("[questions-debug] PUT:lookup", {
       category,
       id,
       questionIndex,
@@ -180,7 +180,7 @@ export async function PUT(request: Request) {
     await writeQuestions(category, questions);
     revalidatePath(getCategoryPath(category));
 
-    console.info("[questions-debug] PUT:done", {
+    console.error("[questions-debug] PUT:done", {
       category,
       id,
       revalidatedPath: getCategoryPath(category),

@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 };
 
 export default async function TechnicalPage() {
-  console.info("[questions-debug] technical-page:start", {
+  console.error("[questions-debug] technical-page:start", {
     url: "/technical",
     timestamp: new Date().toISOString(),
   });
   const questions = await readQuestions("technical");
-  console.info("[questions-debug] technical-page:render", {
+  console.error("[questions-debug] technical-page:render", {
     count: questions.length,
     questions: questions.map((question) => ({
       id: question.id,
