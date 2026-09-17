@@ -4,6 +4,7 @@ import path from "node:path";
 import { faLaptopCode } from "@fortawesome/free-solid-svg-icons";
 import { Question } from "@/types/question";
 import { CategorySearch } from "@/components/ui/search/CategorySearch";
+import { QuestionRouteRefresher } from "@/components/ui/questions/QuestionRouteRefresher";
 
 export const dynamic = "force-dynamic";
 
@@ -18,12 +19,15 @@ export default async function CodePage() {
   ) as Question[];
 
   return (
-    <div className="space-y-6">
-      <CategorySearch
-        questions={questions}
-        badge="Live Coding & Lógica"
-        categoryIcon={faLaptopCode}
-      />
-    </div>
+    <>
+      <QuestionRouteRefresher />
+      <div className="space-y-6">
+        <CategorySearch
+          questions={questions}
+          badge="Live Coding & Lógica"
+          categoryIcon={faLaptopCode}
+        />
+      </div>
+    </>
   );
 }
