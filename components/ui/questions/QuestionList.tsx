@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInbox } from "@fortawesome/free-solid-svg-icons";
 import { Question } from "@/types/question";
@@ -20,6 +20,27 @@ export function QuestionList({
   const [deletedQuestionIds, setDeletedQuestionIds] = useState<Set<string>>(
     () => new Set(),
   );
+  const focusedQuestionId = useSyncExternalStore(
+    (onStoreChange) => {
+      window.addEventListener("hashchange", onStoreChange);
+      return () => window.removeEventListener("hashchange", onStoreChange);
+    },
+    () => {
+      const hash = window.location.hash;
+      return hash.startsWith("#faq-") ? hash.slice("#faq-".length) : null;
+    },
+    () => null,
+  );
+
+  useEffect(() => {
+    if (!focusedQuestionId) return;
+
+    document.getElementById(`faq-${focusedQuestionId}`)?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  }, [focusedQuestionId]);
+
   const visibleQuestions = questions.filter(
     (question) => !deletedQuestionIds.has(question.id),
   );
@@ -39,8 +60,9 @@ export function QuestionList({
     <div className={`space-y-3 mb-100 ${className ?? ""}`}>
       {visibleQuestions.map((item) => (
         <QuestionAccordion
-          key={item.id}
+          key={`${item.id}-${item.id === focusedQuestionId ? "focused" : "default"}`}
           question={item}
+          defaultOpen={item.id === focusedQuestionId}
           showTags={showTags}
           onDeleted={(id) =>
             setDeletedQuestionIds((current) => new Set(current).add(id))

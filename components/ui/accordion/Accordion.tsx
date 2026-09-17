@@ -25,7 +25,11 @@ export function Accordion({
   const toggle = () => setIsOpen((previousIsOpen) => !previousIsOpen);
 
   return (
-    <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-950">
+    <div className={`overflow-hidden rounded-xl border bg-white transition-colors shadow-xs dark:bg-zinc-950 ${
+      isOpen
+        ? "border-blue-500 shadow-md dark:border-blue-400"
+        : "border-zinc-200 dark:border-zinc-800"
+    }`}>
       {Header({ isOpen, toggle, contentId })}
       <div
         id={contentId}

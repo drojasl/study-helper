@@ -44,3 +44,6 @@ next-env.d.ts
 /docs/plans
 /docs/requirements
 /docs/reviews
+
+# runtime question data
+/app/*/questions.json

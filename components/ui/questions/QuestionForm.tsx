@@ -62,6 +62,12 @@ export function QuestionForm({ initialQuestion }: QuestionFormProps) {
       const result = await response.json() as { added?: number; category?: QuestionCategory; error?: string };
 
       if (!response.ok) throw new Error(result.error ?? "No se pudo guardar la pregunta.");
+      if (isEditing && initialQuestion?.id) {
+        // A full navigation avoids the client Router Cache after an edit.
+        // eslint-disable-next-line @next/next/no-location-assign-relative-destination
+        window.location.assign(`/${category}#faq-${initialQuestion.id}`);
+        return;
+      }
       setStatus({
         type: "success",
         message: isEditing ? "La pregunta se actualizó correctamente." : `Se agregó ${result.added === 1 ? "la pregunta" : `${result.added} preguntas`} correctamente.`,

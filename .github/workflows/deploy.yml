@@ -24,9 +24,29 @@ jobs:
 
             cd /var/www/interviewier
 
+            question_backup_dir=$(mktemp -d)
+            trap 'rm -rf "$question_backup_dir"' EXIT
+            question_files="app/code/questions.json app/cultural-fit/questions.json app/hr/questions.json app/technical/questions.json"
+
+            echo "💾 Respaldando preguntas de producción..."
+            for question_file in $question_files; do
+              if [ -f "$question_file" ]; then
+                mkdir -p "$question_backup_dir/$(dirname "$question_file")"
+                cp "$question_file" "$question_backup_dir/$question_file"
+              fi
+            done
+
             echo "📥 Actualizando código..."
             git pull --ff-only origin main
             echo "Commit desplegado: $(git rev-parse --short HEAD)"
+
+            echo "♻️ Restaurando preguntas de producción..."
+            for question_file in $question_files; do
+              if [ -f "$question_backup_dir/$question_file" ]; then
+                mkdir -p "$(dirname "$question_file")"
+                cp "$question_backup_dir/$question_file" "$question_file"
+              fi
+            done
 
             echo "📦 Instalando dependencias..."
             npm install
