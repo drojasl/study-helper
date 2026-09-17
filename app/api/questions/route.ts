@@ -1,5 +1,6 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import type { Question, QuestionCategory } from "@/types/question";
 
@@ -75,6 +76,10 @@ function getQuestionFilePath(category: QuestionCategory): string {
   return path.join(process.cwd(), "app", category, "questions.json");
 }
 
+function getCategoryPath(category: QuestionCategory): string {
+  return category === "technical" ? "/technical" : `/${category}`;
+}
+
 async function readQuestions(category: QuestionCategory): Promise<Question[]> {
   return JSON.parse(await fs.readFile(getQuestionFilePath(category), "utf8")) as Question[];
 }
@@ -143,6 +148,7 @@ export async function POST(request: Request) {
       });
 
       await writeQuestions(category, [...existingQuestions, ...newQuestions]);
+      revalidatePath(getCategoryPath(category));
       addedQuestions.push(...newQuestions);
     }
 
@@ -175,6 +181,7 @@ export async function PUT(request: Request) {
 
     questions[questionIndex] = { id, ...normalizeQuestion(body, category) };
     await writeQuestions(category, questions);
+    revalidatePath(getCategoryPath(category));
 
     return NextResponse.json({ updated: id, category });
   } catch (error) {
@@ -200,6 +207,7 @@ export async function DELETE(request: Request) {
     }
 
     await writeQuestions(category, remainingQuestions);
+    revalidatePath(getCategoryPath(category));
     return NextResponse.json({ deleted: id, category });
   } catch (error) {
     const message = error instanceof Error ? error.message : "No se pudo eliminar la pregunta.";

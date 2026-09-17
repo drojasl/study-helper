@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faCode, faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 import type { Question, QuestionCategory } from "@/types/question";
@@ -131,9 +130,9 @@ export function QuestionForm({ initialQuestion }: QuestionFormProps) {
           <FontAwesomeIcon icon={isSaving ? faCheck : faFloppyDisk} aria-hidden="true" />
           {isSaving ? "Guardando..." : "Guardar pregunta"}
         </button>
-        <Link href={category === "technical" ? "/technical" : `/${category}`} className="rounded-lg px-4 py-2.5 text-sm font-semibold text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800">
+        <a href={category === "technical" ? "/technical" : `/${category}`} className="rounded-lg px-4 py-2.5 text-sm font-semibold text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800">
           Ver categoría
-        </Link>
+        </a>
       </div>
     </form>
   );

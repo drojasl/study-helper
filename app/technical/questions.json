@@ -2,7 +2,7 @@
   {
     "id": "technical-1",
     "question": "OOP Principles",
-    "answer": "**Object-Oriented Principles** is based on four main principles:\n\n**Encapsulation:** Keeps data and behavior together and controls access.\n**Abstraction:** Hides implementation details behind clear interfaces.\n**Inheritance:** Allows a class to derive behavior from another class.\n**Polymorphism:** Allows different implementations to be used through the same abstraction.\n\nThese principles help reduce coupling and improve maintainability.",
+    "answer": "**Object-Oriented Programming** is based on four main principles:\n\n**Encapsulation:** Keeps data and behavior together and controls access.\n**Abstraction:** Hides implementation details behind clear interfaces.\n**Inheritance:** Allows a class to derive behavior from another class.\n**Polymorphism:** Allows different implementations to be used through the same abstraction.\n\nThese principles help reduce coupling and improve maintainability.",
     "category": "technical",
     "tags": [
       "OOP"
