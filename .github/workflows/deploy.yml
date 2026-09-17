@@ -39,6 +39,6 @@ jobs:
             pm2 save
 
             echo "🔎 Verificando aplicación..."
-            curl --fail --silent --show-error http://127.0.0.1:3000/technical > /dev/null
+            curl --fail --silent --show-error --retry 10 --retry-delay 2 --retry-connrefused http://127.0.0.1:3000/technical > /dev/null
 
             echo "✅ Deploy terminado"
