@@ -8,8 +8,18 @@ export function getQuestionsFilePath(category: QuestionCategory): string {
 
 export async function readQuestions(category: QuestionCategory): Promise<Question[]> {
   const filePath = getQuestionsFilePath(category);
-  const content = await fs.readFile(filePath, "utf8");
-  return JSON.parse(content) as Question[];
+
+  try {
+    const content = await fs.readFile(filePath, "utf8");
+    return JSON.parse(content) as Question[];
+  } catch (error) {
+    const err = error as NodeJS.ErrnoException;
+    if (err?.code === "ENOENT") {
+      return [];
+    }
+
+    throw error;
+  }
 }
 
 export async function writeQuestions(
@@ -17,5 +27,6 @@ export async function writeQuestions(
   questions: Question[],
 ): Promise<void> {
   const filePath = getQuestionsFilePath(category);
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
   await fs.writeFile(filePath, `${JSON.stringify(questions, null, 2)}\n`, "utf8");
 }
