@@ -10,6 +10,7 @@ const categoryLabels: Record<QuestionCategory, string> = {
   technical: "Técnica Conceptual",
   code: "Técnica de Código",
   "cultural-fit": "Cultural Fit",
+  ia: "IA / Inteligencia Artificial",
 };
 
 const emptyJson = JSON.stringify(

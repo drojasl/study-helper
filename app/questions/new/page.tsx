@@ -15,7 +15,7 @@ interface NewQuestionPageProps {
   searchParams: Promise<{ category?: string; id?: string }>;
 }
 
-const categories: QuestionCategory[] = ["hr", "technical", "code", "cultural-fit"];
+const categories: QuestionCategory[] = ["hr", "technical", "code", "cultural-fit", "ia"];
 
 export default async function NewQuestionPage({ searchParams }: NewQuestionPageProps) {
   const params = await searchParams;

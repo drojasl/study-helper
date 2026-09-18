@@ -2,6 +2,7 @@ import {
   faHouse,
   faUserTie,
   faBrain,
+  faRobot,
   faCode,
   faHandshake,
   faSquarePlus,
@@ -26,6 +27,12 @@ export const NAV_ITEMS: readonly NavItem[] = [
     href: "/technical",
     icon: faBrain,
     description: "Arquitectura, patrones de diseño y conceptos teóricos",
+  },
+  {
+    label: "IA / Inteligencia Artificial",
+    href: "/ia",
+    icon: faRobot,
+    description: "Modelos, prompts, evaluación y arquitectura de soluciones con IA",
   },
   {
     label: "Técnica de Código",

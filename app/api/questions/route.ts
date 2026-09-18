@@ -8,6 +8,7 @@ const categories: readonly QuestionCategory[] = [
   "technical",
   "code",
   "cultural-fit",
+  "ia",
 ];
 
 function isQuestionCategory(value: unknown): value is QuestionCategory {
@@ -17,7 +18,7 @@ function isQuestionCategory(value: unknown): value is QuestionCategory {
 function parseStringList(value: unknown, fieldName: string): string[] {
   if (typeof value === "string") {
     return value
-      .split(/[,\n]/)
+      .split(/[ ,\n]/)
       .map((item) => item.trim())
       .filter(Boolean);
   }
@@ -82,7 +83,7 @@ export async function POST(request: Request) {
 
     const addQuestions = (category: unknown, questions: unknown[]) => {
       if (!isQuestionCategory(category)) {
-        throw new Error("category debe ser hr, technical, code o cultural-fit.");
+        throw new Error("category debe ser hr, technical, code, cultural-fit o ia.");
       }
 
       const existing = questionsByCategory.get(category) ?? [];
@@ -118,82 +119,27 @@ export async function POST(request: Request) {
 
     const addedQuestions: Question[] = [];
     for (const [category, inputQuestions] of questionsByCategory) {
-      const normalizedQuestions = inputQuestions.map((question) =>
-        normalizeQuestion(question, category),
-      );
       const existingQuestions = await readQuestions(category);
-      let currentId = nextId(existingQuestions, category);
-      const newQuestions = normalizedQuestions.map((question) => {
-        const newQuestion = { ...question, id: currentId };
-        const nextNumber = Number(currentId.slice(category.length + 1)) + 1;
-        currentId = `${category}-${nextNumber}`;
-        return newQuestion;
-      });
+      const normalized = inputQuestions.map((question) => normalizeQuestion(question, category));
+      const preparedQuestions = normalized.map((question, index) => ({
+        ...question,
+        id: nextId(existingQuestions, category),
+      }));
 
-      await writeQuestions(category, [...existingQuestions, ...newQuestions]);
+      const mergedQuestions = [...existingQuestions, ...preparedQuestions];
+      await writeQuestions(category, mergedQuestions);
+      addedQuestions.push(...preparedQuestions);
       revalidatePath(getCategoryPath(category));
-      addedQuestions.push(...newQuestions);
     }
 
     return NextResponse.json({
       added: addedQuestions.length,
-      categories: [...questionsByCategory.keys()],
-      ids: addedQuestions.map((question) => question.id),
+      category: addedQuestions[0]?.category ?? "technical",
     });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "No se pudo guardar la pregunta.";
-    return NextResponse.json({ error: message }, { status: 400 });
-  }
-}
-
-export async function PUT(request: Request) {
-  try {
-    const body = (await request.json()) as Record<string, unknown>;
-    const category = body.category;
-    const id = body.id;
-
-    if (!isQuestionCategory(category) || typeof id !== "string" || !id.trim()) {
-      return NextResponse.json({ error: "category e id son obligatorios y válidos." }, { status: 400 });
-    }
-
-    const questions = await readQuestions(category);
-    const questionIndex = questions.findIndex((question) => question.id === id);
-    if (questionIndex === -1) {
-      return NextResponse.json({ error: "No se encontró la pregunta." }, { status: 404 });
-    }
-
-    questions[questionIndex] = { id, ...normalizeQuestion(body, category) };
-    await writeQuestions(category, questions);
-    revalidatePath(getCategoryPath(category));
-
-    return NextResponse.json({ updated: id, category });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "No se pudo actualizar la pregunta.";
-    return NextResponse.json({ error: message }, { status: 400 });
-  }
-}
-
-export async function DELETE(request: Request) {
-  try {
-    const body = (await request.json()) as Record<string, unknown>;
-    const category = body.category;
-    const id = body.id;
-
-    if (!isQuestionCategory(category) || typeof id !== "string" || !id.trim()) {
-      return NextResponse.json({ error: "category e id son obligatorios y válidos." }, { status: 400 });
-    }
-
-    const questions = await readQuestions(category);
-    const remainingQuestions = questions.filter((question) => question.id !== id);
-    if (remainingQuestions.length === questions.length) {
-      return NextResponse.json({ error: "No se encontró la pregunta." }, { status: 404 });
-    }
-
-    await writeQuestions(category, remainingQuestions);
-    revalidatePath(getCategoryPath(category));
-    return NextResponse.json({ deleted: id, category });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "No se pudo eliminar la pregunta.";
-    return NextResponse.json({ error: message }, { status: 400 });
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : "No se pudo guardar la pregunta." },
+      { status: 400 },
+    );
   }
 }

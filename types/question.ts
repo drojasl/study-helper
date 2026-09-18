@@ -1,4 +1,4 @@
-export type QuestionCategory = "hr" | "technical" | "code" | "cultural-fit";
+export type QuestionCategory = "hr" | "technical" | "code" | "cultural-fit" | "ia";
 
 export interface Question {
   id: string;
