@@ -21,6 +21,7 @@ export default async function HrPage() {
       <div className="space-y-6">
         <CategorySearch
           questions={questions}
+          category="hr"
           badge="Recursos Humanos"
           categoryIcon={faUsers}
         />

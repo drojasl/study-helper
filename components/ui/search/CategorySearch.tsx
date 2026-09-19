@@ -8,17 +8,20 @@ import type { Question } from "@/types/question";
 import { useSearch } from "@/hooks/useSearch";
 import { CategoryHeader } from "./CategoryHeader";
 import { QuestionList } from "../questions/QuestionList";
+import { QuestionDataActions } from "../questions/QuestionDataActions";
 import { SearchBar } from "./SearchBar";
 import { TagFilter } from "./TagFilter";
 
 interface CategorySearchProps {
   questions: Question[];
+  category: Question["category"];
   badge: string;
   categoryIcon: IconDefinition;
 }
 
 export function CategorySearch({
   questions,
+  category,
   badge,
   categoryIcon,
 }: CategorySearchProps) {
@@ -44,6 +47,7 @@ export function CategorySearch({
         badge={badge}
         categoryIcon={categoryIcon}
         count={questions.length}
+        actions={<QuestionDataActions category={category} pageTitle={badge} questions={questions} />}
       >
         <SearchBar
           searchTerm={searchTerm}

@@ -21,6 +21,7 @@ export default async function TechnicalPage() {
       <div className="space-y-6">
         <CategorySearch
           questions={questions}
+          category="technical"
           badge="Técnica Conceptual"
           categoryIcon={faCode}
         />

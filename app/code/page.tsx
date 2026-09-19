@@ -21,6 +21,7 @@ export default async function CodePage() {
       <div className="space-y-6">
         <CategorySearch
           questions={questions}
+          category="code"
           badge="Live Coding & Lógica"
           categoryIcon={faLaptopCode}
         />

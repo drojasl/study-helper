@@ -21,6 +21,7 @@ export default async function IAPage() {
       <div className="space-y-6">
         <CategorySearch
           questions={questions}
+          category="ia"
           badge="IA / Inteligencia Artificial"
           categoryIcon={faRobot}
         />

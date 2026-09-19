@@ -21,6 +21,7 @@ export default async function CulturalFitPage() {
       <div className="space-y-6">
         <CategorySearch
           questions={questions}
+          category="cultural-fit"
           badge="Cultura & Colaboración"
           categoryIcon={faHeart}
         />

@@ -108,6 +108,21 @@ export async function POST(request: Request) {
       const inputQuestions = Array.isArray(bodyRecord.questions)
         ? bodyRecord.questions
         : [bodyRecord];
+      if (bodyRecord.replace === true) {
+        if (!isQuestionCategory(bodyRecord.category)) {
+          throw new Error("category debe ser hr, technical, code, cultural-fit o ia.");
+        }
+
+        const normalized = inputQuestions.map((question) => normalizeQuestion(question, bodyRecord.category as QuestionCategory));
+        const replacedQuestions = normalized.map((question, index) => ({
+          ...question,
+          id: `${bodyRecord.category}-${index + 1}`,
+        }));
+        await writeQuestions(bodyRecord.category, replacedQuestions);
+        revalidatePath(getCategoryPath(bodyRecord.category));
+        return NextResponse.json({ count: replacedQuestions.length, category: bodyRecord.category });
+      }
+
       addQuestions(bodyRecord.category, inputQuestions);
     } else {
       throw new Error("El JSON debe ser una pregunta o un array de preguntas.");
@@ -121,7 +136,7 @@ export async function POST(request: Request) {
     for (const [category, inputQuestions] of questionsByCategory) {
       const existingQuestions = await readQuestions(category);
       const normalized = inputQuestions.map((question) => normalizeQuestion(question, category));
-      const preparedQuestions = normalized.map((question, index) => ({
+      const preparedQuestions = normalized.map((question) => ({
         ...question,
         id: nextId(existingQuestions, category),
       }));
