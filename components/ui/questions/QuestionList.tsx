@@ -37,7 +37,7 @@ export function QuestionList({
 
     document.getElementById(`faq-${focusedQuestionId}`)?.scrollIntoView({
       behavior: "smooth",
-      block: "center",
+      block: "start",
     });
   }, [focusedQuestionId]);
 

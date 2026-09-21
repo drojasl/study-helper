@@ -158,3 +158,37 @@ export async function POST(request: Request) {
     );
   }
 }
+
+export async function PUT(request: Request) {
+  try {
+    const body = await request.json() as Record<string, unknown>;
+    if (!isQuestionCategory(body.category)) {
+      throw new Error("category debe ser hr, technical, code, cultural-fit o ia.");
+    }
+    if (typeof body.id !== "string" || !body.id.trim()) {
+      throw new Error("id es obligatorio para actualizar una pregunta.");
+    }
+
+    const existingQuestions = await readQuestions(body.category);
+    const questionIndex = existingQuestions.findIndex((question) => question.id === body.id);
+    if (questionIndex === -1) {
+      return NextResponse.json({ error: "No se encontró la pregunta." }, { status: 404 });
+    }
+
+    const updatedQuestion = {
+      ...normalizeQuestion(body, body.category),
+      id: existingQuestions[questionIndex].id,
+    };
+    const updatedQuestions = [...existingQuestions];
+    updatedQuestions[questionIndex] = updatedQuestion;
+    await writeQuestions(body.category, updatedQuestions);
+    revalidatePath(getCategoryPath(body.category));
+
+    return NextResponse.json({ category: body.category, id: updatedQuestion.id });
+  } catch (error) {
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : "No se pudo actualizar la pregunta." },
+      { status: 400 },
+    );
+  }
+}

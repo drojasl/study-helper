@@ -14,15 +14,13 @@ const categoryLabels: Record<QuestionCategory, string> = {
 };
 
 const emptyJson = JSON.stringify(
-  [
-    {
-      category: "technical",
-      question: "",
-      answer: "",
-      tags: [],
-      keyPoints: [],
-    },
-  ],
+  {
+    category: "technical",
+    question: "",
+    answer: "",
+    tags: [],
+    keyPoints: [],
+  },
   null,
   2,
 );
@@ -39,7 +37,7 @@ export function QuestionForm({ initialQuestion }: QuestionFormProps) {
   const [answer, setAnswer] = useState(initialQuestion?.answer ?? "");
   const [tags, setTags] = useState(initialQuestion?.tags.join(", ") ?? "");
   const [keyPoints, setKeyPoints] = useState(initialQuestion?.keyPoints?.join("\n") ?? "");
-  const [rawJson, setRawJson] = useState(emptyJson);
+  const [rawJson, setRawJson] = useState(() => JSON.stringify(initialQuestion ?? JSON.parse(emptyJson), null, 2));
   const [status, setStatus] = useState<{ type: "success" | "error"; message: string } | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -49,9 +47,24 @@ export function QuestionForm({ initialQuestion }: QuestionFormProps) {
     setIsSaving(true);
 
     try {
-      const payload = mode === "raw"
-        ? JSON.parse(rawJson)
-        : { category, question, answer, tags, keyPoints };
+      let payload: Record<string, unknown>;
+      if (mode === "raw") {
+        let parsed: unknown;
+        try {
+          parsed = JSON.parse(rawJson) as unknown;
+        } catch {
+          throw new Error("El JSON RAW no es válido.");
+        }
+        if (isEditing && Array.isArray(parsed)) {
+          throw new Error("Al editar una pregunta, el JSON RAW debe ser un objeto único.");
+        }
+        if (!parsed || typeof parsed !== "object") {
+          throw new Error("El JSON RAW debe ser un objeto.");
+        }
+        payload = parsed as Record<string, unknown>;
+      } else {
+        payload = { category, question, answer, tags, keyPoints };
+      }
       const requestBody = isEditing
         ? { ...payload, category, id: initialQuestion?.id }
         : payload;
@@ -81,7 +94,7 @@ export function QuestionForm({ initialQuestion }: QuestionFormProps) {
     } catch (error) {
       setStatus({
         type: "error",
-        message: error instanceof SyntaxError ? "El JSON RAW no es válido." : error instanceof Error ? error.message : "No se pudo guardar la pregunta.",
+        message: error instanceof Error ? error.message : "No se pudo guardar la pregunta.",
       });
     } finally {
       setIsSaving(false);
@@ -127,7 +140,7 @@ export function QuestionForm({ initialQuestion }: QuestionFormProps) {
           <label className={labelClassName}>JSON de la pregunta
             <textarea required value={rawJson} onChange={(event) => setRawJson(event.target.value)} className={`${fieldClassName} min-h-[26rem] font-mono text-xs`} spellCheck={false} />
           </label>
-          <p className="mt-3 text-xs leading-5 text-zinc-500 dark:text-zinc-400">Puedes enviar un objeto o un arreglo de preguntas. En un arreglo, cada pregunta debe incluir su `category`; `tags` y `keyPoints` deben ser arreglos.</p>
+          <p className="mt-3 text-xs leading-5 text-zinc-500 dark:text-zinc-400">{isEditing ? "Al editar, debes enviar un único objeto de pregunta; `tags` y `keyPoints` deben ser arreglos." : "Puedes enviar un objeto o un arreglo de preguntas. En un arreglo, cada pregunta debe incluir su `category`; `tags` y `keyPoints` deben ser arreglos."}</p>
         </div>
       )}
 
