@@ -15,10 +15,10 @@ function isQuestionCategory(value: unknown): value is QuestionCategory {
   return typeof value === "string" && categories.includes(value as QuestionCategory);
 }
 
-function parseStringList(value: unknown, fieldName: string): string[] {
+function parseStringList(value: unknown, fieldName: string, separator = /[ ,\n]/): string[] {
   if (typeof value === "string") {
     return value
-      .split(/[ ,\n]/)
+      .split(separator)
       .map((item) => item.trim())
       .filter(Boolean);
   }
@@ -48,7 +48,7 @@ function normalizeQuestion(input: unknown, category: QuestionCategory): Omit<Que
     answer: question.answer.trim(),
     category,
     tags: parseStringList(question.tags, "tags"),
-    keyPoints: parseStringList(question.keyPoints, "keyPoints"),
+    keyPoints: parseStringList(question.keyPoints, "keyPoints", /\r?\n/),
   };
 
   if (typeof question.codeSnippet === "string" && question.codeSnippet.trim()) {
