@@ -136,10 +136,13 @@ export async function POST(request: Request) {
     for (const [category, inputQuestions] of questionsByCategory) {
       const existingQuestions = await readQuestions(category);
       const normalized = inputQuestions.map((question) => normalizeQuestion(question, category));
-      const preparedQuestions = normalized.map((question) => ({
-        ...question,
-        id: nextId(existingQuestions, category),
-      }));
+      const preparedQuestions: Question[] = [];
+      for (const question of normalized) {
+        preparedQuestions.push({
+          ...question,
+          id: nextId([...existingQuestions, ...preparedQuestions], category),
+        });
+      }
 
       const mergedQuestions = [...existingQuestions, ...preparedQuestions];
       await writeQuestions(category, mergedQuestions);
