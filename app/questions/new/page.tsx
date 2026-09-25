@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 interface NewQuestionPageProps {
   searchParams: Promise<{ category?: string; id?: string }>;
 }
-
+// Define the valid categories for questions
 const categories: QuestionCategory[] = ["hr", "technical", "code", "cultural-fit", "ia"];
 
 export default async function NewQuestionPage({ searchParams }: NewQuestionPageProps) {
